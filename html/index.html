@@ -10,8 +10,65 @@
 
 <header>
     <h1>IdeaCalculator</h1>
-    <button>Sign in</button>
-    <button>Sign up</button>
+
+    <script>
+        // Get the modal
+        var modals = document.getElementsByClassName('modal');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            for (var i = 0; i < modals.length; i++) {
+                var m = modals[i]
+                if (event.target === m) {
+                    m.style.display = 'none'
+                }
+            }
+        }
+    </script>
+
+    <button onclick="document.getElementById('id01').style.display='block'">Sign in</button>
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate">
+
+            <div class="container">
+                <label><b>Username</b></label>
+                <input type="text" placeholder="Enter Username">
+
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password">
+
+                <button type="submit">Sign in</button>
+
+                <label>
+                    <input type="checkbox" checked="checked"> Remember me
+                </label>
+            </div>
+        </form>
+    </div>
+
+    <button onclick="document.getElementById('id02').style.display='block'">Sign up</button>
+
+    <div id="id02" class="modal">
+
+        <form class="modal-content animate">
+
+            <div class="container">
+                <label><b>Username</b></label>
+                <input type="text" placeholder="Enter Username">
+
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password">
+
+                <label><b>Repeat password</b></label>
+                <input type="password" placeholder="Enter Password">
+
+                <button type="submit">Sign up</button>
+            </div>
+        </form>
+    </div>
+
 </header>
 
 <body ng-app="calculatorApp">
