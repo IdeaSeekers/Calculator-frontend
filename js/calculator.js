@@ -1,5 +1,12 @@
-angular.module("calculatorApp", [])
-.controller("calculatorController", function ($scope) {
+'use strict'
+
+App
+.config(['$sceDelegatorProvider', function ($sceDelegatorProvider) {
+    $sceDelegatorProvider.resourceUrlWhitelist([
+       'self', 'http://localhost:8080'
+    ])
+}])
+.controller("calculatorController", ['$scope', 'serverCommunication', function ($scope, serverCommunication) {
     $scope.curOperand = ""
     $scope.prevOperand = ""
     $scope.calculationHistoryList = []
@@ -44,4 +51,4 @@ angular.module("calculatorApp", [])
         // TODO: update calculation history from server
         $scope.calculationHistoryList.push($scope.prevOperand + $scope.curOperand)
     }
-})
+}])
