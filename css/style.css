@@ -1,0 +1,122 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+header {
+    font-family: "Fira Mono", monospace;
+    background-color: #E5E4E2;
+    padding: 0.25vh 2vw;
+    display: flex;
+}
+
+header > h1 {
+    margin-right: auto;
+}
+
+header > button {
+    font-family: "Fira Mono", monospace;
+    font-size: 1.5rem;
+    margin: 1.5vh 1vw;
+    min-width: 12vw;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.calculator-container {
+    padding-top: 5vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.calculator-grid {
+    display: grid;
+    justify-content: center;
+    height: 70vh;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid #848884;
+    outline: none;
+}
+
+.calculator-grid > button.compute-button {
+    color: #ffffff;
+    background-color: #6495ED;
+}
+
+.calculator-grid > button.operator-button {
+    background-color: #E5E4E2;
+}
+
+.calculator-grid > button:hover {
+    background-color: #848884;
+}
+
+.output{
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    min-height: 12vh;
+}
+
+.output .previous-operand{
+    color: rgba(255,255, 255, 0.75);
+    font-size: 1.5rem;
+}
+
+.output .current-operand{
+    color: white;
+    font-size: 2.5rem;
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    text-align: right;
+    width: 480px;
+}
+
+.calculator-history {
+    height: 70vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #848884;
+}
+
+.calculator-history > h2 {
+    text-align: center;
+}
+
+.calculator-history-list {
+    margin: 10px 10px;
+    overflow: auto;
+    border: 1px solid #E5E4E2;
+}
+
+.calculator-history-list > p {
+    padding: 10px 10px;
+    margin: 0;
+    font-size: 1.5rem;
+    word-wrap: break-word;
+    word-break: normal;
+    border: 1px solid #E5E4E2;
+}
+
+.calculator-history-list > p:hover {
+    background-color: #E5E4E2;
+    cursor: pointer;
+}
