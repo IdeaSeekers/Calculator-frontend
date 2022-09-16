@@ -67,6 +67,8 @@ App
                 .replace("×", "*")
                 .replace("÷", "/")
 
+            $scope.curOperand = "Calculating..."
+
             serverCommunication
                 .serverCalculate(operand, token)
                 .then(function (response) {
@@ -80,8 +82,8 @@ App
                     } else {
                         $scope.curOperand = response.comment
                     }
-                }, function (errResponse) {
-                    $scope.curOperand = 'Unexpected error'
+                }, function (_) {
+                    $scope.curOperand = 'Connection error'
                 })
 
             // $scope.curOperand = mockEval($scope.curOperand)
