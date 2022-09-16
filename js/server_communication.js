@@ -1,6 +1,8 @@
 'use strict'
 
 App.factory('serverCommunication', ['$http', '$q', function ($http, $q) {
+    $http.defaults.headers.common.Accept = 'application/json, text/plain, */*'
+    $http.defaults.headers.post['Content-Type'] = 'application/json'
 
     return {
         serverCalculate: function (query, token) {
@@ -11,14 +13,14 @@ App.factory('serverCommunication', ['$http', '$q', function ($http, $q) {
                 body.authToken = token
             }
 
-            return $http.post('/calculate', body)
+            return $http.post(baseUrl + '/calculate', body)
                 .then(
                     function (response) {
                         return response.data
                     },
                     function (errResponse) {
                         console.error('Error while calculation');
-                        return $q.reject(errResponse);
+                        return $q.reject(errResponse)
                     }
                 );
         },
@@ -28,7 +30,7 @@ App.factory('serverCommunication', ['$http', '$q', function ($http, $q) {
                 login: login,
                 password: password
             }
-            return $http.post('/signin', data)
+            return $http.post(baseUrl + '/signin', data)
                 .then(
                     function (response) {
                         return response.data;
@@ -45,7 +47,7 @@ App.factory('serverCommunication', ['$http', '$q', function ($http, $q) {
                 login: login,
                 password: password
             }
-            return $http.post('/signup', data)
+            return $http.post(baseUrl + '/signup', data)
                 .then(
                     function (response) {
                         return response.data;
@@ -61,7 +63,7 @@ App.factory('serverCommunication', ['$http', '$q', function ($http, $q) {
             let data = {
                 authToken: token
             }
-            return $http.post('/history', data)
+            return $http.post(baseUrl + '/history', data)
                 .then(
                     function (response) {
                         return response.data;

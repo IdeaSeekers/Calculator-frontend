@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
 <link href="../css/style.css" rel="stylesheet">
 <script data-require="angular.js@1.3.x" src="https://code.angularjs.org/1.3.15/angular.js" data-semver="1.3.15"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-cookies.min.js"></script>
 
 <head>
     <meta charset="utf-8">
@@ -72,6 +73,8 @@
 </header>
 
 <body ng-app="calculatorApp">
+<script src="../js/app.js" defer></script>
+<script src="../js/server_communication.js" defer></script>
 <script src="../js/calculator.js" defer></script>
 <div class="calculator-container" ng-controller="calculatorController as calculator">
     <div class="calculator-grid">
