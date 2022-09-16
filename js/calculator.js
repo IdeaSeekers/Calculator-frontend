@@ -16,14 +16,24 @@ App
         $scope.calculationHistoryList = []
         var token = $cookies[authTokenCookie]
 
-        if (token != null) {
-            serverCommunication
-                .serverHistory(token)
-                .then(function (response) {
-                    if (response.history != null) {
-                        $scope.calculationHistoryList = transformHistory(response.history)
-                    }
-                })
+        let updateHistory = function () {
+            if (token != null) {
+                serverCommunication
+                    .serverHistory(token)
+                    .then(function (response) {
+                        if (response.history != null) {
+                            $scope.calculationHistoryList = transformHistory(response.history)
+                        }
+                    })
+            }
+        }
+
+        updateHistory()
+
+        let updateToken = function (newToken) {
+            token = newToken
+            $cookies[authTokenCookie] = newToken
+            updateHistory()
         }
 
         $scope.addSymbol = function (symbol) {
@@ -88,6 +98,29 @@ App
 
             // $scope.curOperand = mockEval($scope.curOperand)
             // $scope.calculationHistoryList.push($scope.prevOperand + $scope.curOperand)
+        }
+
+        $scope.sign_in_username = ""
+        $scope.sign_in_password = ""
+
+        let closeSignInForm = function () {
+            let form = document.getElementById("signIn")
+            form.style.display = "none"
+            $scope.sign_in_username = ""
+            $scope.sign_in_password = ""
+        }
+
+        $scope.signIn = function () {
+
+            serverCommunication
+                .serverSignIn($scope.sign_in_username, $scope.sign_in_password)
+                .then(function (response) {
+                    updateToken(response.authToken)
+                    closeSignInForm()
+                }, function (_) {
+                    closeSignInForm()
+                })
+
         }
     }
 ])
